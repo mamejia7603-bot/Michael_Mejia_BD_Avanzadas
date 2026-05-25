@@ -1,0 +1,51 @@
+<HR_SCHEMA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="hr_schema.xsd">
+<TABLE name="REGIONS">
+<COLUMN name="REGION_ID" type="NUMBER" primaryKey="true"/>
+<COLUMN name="REGION_NAME" type="VARCHAR2(25)"/>
+</TABLE>
+<TABLE name="COUNTRIES">
+<COLUMN name="COUNTRY_ID" type="CHAR(2)" primaryKey="true"/>
+<COLUMN name="COUNTRY_NAME" type="VARCHAR2(40)"/>
+<COLUMN name="REGION_ID" type="NUMBER" foreignKey="REGIONS.REGION_ID"/>
+</TABLE>
+<TABLE name="LOCATIONS">
+<COLUMN name="LOCATION_ID" type="NUMBER(4)" primaryKey="true"/>
+<COLUMN name="STREET_ADDRESS" type="VARCHAR2(40)"/>
+<COLUMN name="POSTAL_CODE" type="VARCHAR2(12)"/>
+<COLUMN name="CITY" type="VARCHAR2(30)"/>
+<COLUMN name="STATE_PROVINCE" type="VARCHAR2(25)"/>
+<COLUMN name="COUNTRY_ID" type="CHAR(2)" foreignKey="COUNTRIES.COUNTRY_ID"/>
+</TABLE>
+<TABLE name="DEPARTMENTS">
+<COLUMN name="DEPARTMENT_ID" type="NUMBER(4)" primaryKey="true"/>
+<COLUMN name="DEPARTMENT_NAME" type="VARCHAR2(30)"/>
+<COLUMN name="MANAGER_ID" type="NUMBER(6)" foreignKey="EMPLOYEES.EMPLOYEE_ID"/>
+<COLUMN name="LOCATION_ID" type="NUMBER(4)" foreignKey="LOCATIONS.LOCATION_ID"/>
+</TABLE>
+<TABLE name="JOBS">
+<COLUMN name="JOB_ID" type="VARCHAR2(10)" primaryKey="true"/>
+<COLUMN name="JOB_TITLE" type="VARCHAR2(35)"/>
+<COLUMN name="MIN_SALARY" type="NUMBER(6)"/>
+<COLUMN name="MAX_SALARY" type="NUMBER(6)"/>
+</TABLE>
+<TABLE name="EMPLOYEES">
+<COLUMN name="EMPLOYEE_ID" type="NUMBER(6)" primaryKey="true"/>
+<COLUMN name="FIRST_NAME" type="VARCHAR2(20)"/>
+<COLUMN name="LAST_NAME" type="VARCHAR2(25)"/>
+<COLUMN name="EMAIL" type="VARCHAR2(25)"/>
+<COLUMN name="PHONE_NUMBER" type="VARCHAR2(20)"/>
+<COLUMN name="HIRE_DATE" type="DATE"/>
+<COLUMN name="JOB_ID" type="VARCHAR2(10)" foreignKey="JOBS.JOB_ID"/>
+<COLUMN name="SALARY" type="NUMBER(8,2)"/>
+<COLUMN name="COMMISSION_PCT" type="NUMBER(2,2)"/>
+<COLUMN name="MANAGER_ID" type="NUMBER(6)" foreignKey="EMPLOYEES.EMPLOYEE_ID"/>
+<COLUMN name="DEPARTMENT_ID" type="NUMBER(4)" foreignKey="DEPARTMENTS.DEPARTMENT_ID"/>
+</TABLE>
+<TABLE name="JOB_HISTORY">
+<COLUMN name="EMPLOYEE_ID" type="NUMBER(6)" foreignKey="EMPLOYEES.EMPLOYEE_ID"/>
+<COLUMN name="START_DATE" type="DATE"/>
+<COLUMN name="END_DATE" type="DATE"/>
+<COLUMN name="JOB_ID" type="VARCHAR2(10)" foreignKey="JOBS.JOB_ID"/>
+<COLUMN name="DEPARTMENT_ID" type="NUMBER(4)" foreignKey="DEPARTMENTS.DEPARTMENT_ID"/>
+</TABLE>
+</HR_SCHEMA>
