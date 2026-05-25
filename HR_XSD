@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- ELEMENTO PRINCIPAL -->
+    <xs:element name="HR_SCHEMA">
+        <xs:complexType>
+            <xs:sequence>
+
+                <!-- TABLAS -->
+                <xs:element name="TABLE" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <!-- COLUMNAS -->
+                            <xs:element name="COLUMN" maxOccurs="unbounded">
+                                <xs:complexType>
+
+                                    <!-- ATRIBUTOS DE COLUMN -->
+                                    <xs:attribute name="name"
+                                                  type="xs:string"
+                                                  use="required"/>
+
+                                    <xs:attribute name="type"
+                                                  type="xs:string"
+                                                  use="required"/>
+
+                                    <xs:attribute name="primaryKey"
+                                                  type="xs:boolean"
+                                                  use="optional"/>
+
+                                    <xs:attribute name="foreignKey"
+                                                  type="xs:string"
+                                                  use="optional"/>
+
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:sequence>
+
+                        <!-- ATRIBUTO DE TABLE -->
+                        <xs:attribute name="name"
+                                      type="xs:string"
+                                      use="required"/>
+
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
